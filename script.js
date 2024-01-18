@@ -1,37 +1,61 @@
-// header scrolling effect
-$(window).on('scroll', function(){
-	if($(window).scrollTop()){
-      $('header').addClass('nav-show');
-		  
-	} 
-	else{
-		$('header').removeClass('nav-show');
-	}
-	   
-})
+var flipCheck = 0;
 
-//hamburger
-const navSlide = () => {
-	 const hamburger = document.querySelector(".hamburger");
-	 const navbar = document.querySelector(".nav-bar");
-	 const navLinks = document.querySelectorAll(".nav-bar li");
+function rotateCards() {
+  if (flipCheck === 0) {
+    document.getElementById("front-2").classList.add("showGreen");
+    document.getElementById("back-2").classList.add("showRed");
 
-     hamburger.onclick = () => {
-		
-	 navbar.classList.toggle("nav-active");
-		 
-      //Animation links
-	 navLinks.forEach((link, index) => {
-		if (link.style.animation) {
-			link.style.animation = "";
-		} else {
-			link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7+1}s`;
-		   }
-		});
-	  //hamburger animation
-	 hamburger.classList.toggle("toggle");
-    }
-	 
-	}
+    document.getElementById("front-1").classList.add("showGreen");
+    document.getElementById("back-1").classList.add("showRed");
 
-window.onload = () => navSlide();
+    flipCheck = 1;
+
+    setTimeout(function () {
+      document.getElementById("front-4").classList.add("showGreen");
+      document.getElementById("back-4").classList.add("showRed");
+
+      document.getElementById("front-3").classList.add("showGreen");
+      document.getElementById("back-3").classList.add("showRed");
+
+      document.getElementById("front-5").classList.add("showGreen");
+      document.getElementById("back-5").classList.add("showRed");
+
+      setTimeout(function () {
+        document.getElementById("front-6").classList.add("showGreen");
+        document.getElementById("back-6").classList.add("showRed");
+
+        document.getElementById("front-7").classList.add("showGreen");
+        document.getElementById("back-7").classList.add("showRed");
+      }, 500);
+    }, 500);
+  } else {
+    document.getElementById("front-2").classList.remove("showGreen");
+    document.getElementById("back-2").classList.remove("showRed");
+
+    document.getElementById("front-1").classList.remove("showGreen");
+    document.getElementById("back-1").classList.remove("showRed");
+
+    flipCheck = 0;
+
+    setTimeout(function () {
+      document.getElementById("front-3").classList.remove("showGreen");
+      document.getElementById("back-3").classList.remove("showRed");
+
+      document.getElementById("front-4").classList.remove("showGreen");
+      document.getElementById("back-4").classList.remove("showRed");
+
+      document.getElementById("front-5").classList.remove("showGreen");
+      document.getElementById("back-5").classList.remove("showRed");
+
+      setTimeout(function () {
+        document.getElementById("front-7").classList.remove("showGreen");
+        document.getElementById("back-7").classList.remove("showRed");
+
+        document.getElementById("front-6").classList.remove("showGreen");
+        document.getElementById("back-6").classList.remove("showRed");
+      }, 500);
+    }, 500);
+  }
+}
+
+setInterval(rotateCards, 3000);
